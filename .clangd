@@ -1,0 +1,30 @@
+# clangd 配置 — C++26
+CompilationDatabase: build
+
+CompileFlags:
+  Add:
+    - -std=gnu++26
+    - -freflection
+    - -fmodules
+  Remove:
+    - -W*
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - modernize-*
+      - performance-*
+      - readability-*
+    Remove:
+      - modernize-use-trailing-return-type
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+
+Index:
+  Background: Build
