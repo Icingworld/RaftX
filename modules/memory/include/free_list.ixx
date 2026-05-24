@@ -1,4 +1,6 @@
-export module memory::free_list;
+export module memory.free_list;
+
+import std;
 
 export namespace raftx::memory
 {
@@ -6,7 +8,7 @@ export namespace raftx::memory
 /**
  * @brief 空闲内存块
  */
-export class FreeBlock
+class FreeBlock
 {
 public:
     FreeBlock() noexcept;
@@ -30,7 +32,7 @@ public:
      * @brief 获取下一个空闲内存块
      * @return 下一个空闲内存块
      */
-    FreeBlock * next() const noexcept;
+    [[nodiscard]] FreeBlock * next() const noexcept;
 
 private:
     FreeBlock * next_;  // 下一个空闲内存块
@@ -39,7 +41,7 @@ private:
 /**
  * @brief 空闲内存块链表迭代器
  */
-export class FreeListIterator
+class FreeListIterator
 {
 public:
     /**
@@ -96,14 +98,14 @@ private:
 /**
  * @brief 空闲内存块链表
  */
-export class FreeList
+class FreeList
 {
 public:
     using iterator = FreeListIterator;
     using const_iterator = const FreeListIterator;
 
 public:
-    FreeList();
+    FreeList() noexcept;
 
     ~FreeList() = default;
 
@@ -141,25 +143,25 @@ public:
      * @brief 获取空闲内存块链表的常量迭代器
      * @return 空闲内存块链表的常量迭代器
      */
-    const_iterator cbegin() const noexcept;
+    [[nodiscard]] const_iterator cbegin() const noexcept;
 
     /**
      * @brief 获取空闲内存块链表的常量结束迭代器
      * @return 空闲内存块链表的常量结束迭代器
      */
-    const_iterator cend() const noexcept;
+    [[nodiscard]] const_iterator cend() const noexcept;
 
     /**
      * @brief 判断空闲内存块链表是否为空
      * @return 是否为空
      */
-    bool empty() const noexcept;
+    [[nodiscard]] bool empty() const noexcept;
 
     /**
      * @brief 获取空闲内存块链表的大小
      * @return 空闲内存块链表的大小
      */
-    size_t size() const noexcept;
+    [[nodiscard]] std::size_t size() const noexcept;
 
     /**
      * @brief 清空空闲内存块链表
@@ -168,7 +170,7 @@ public:
 
 private:
     FreeBlock * head_;  // 空闲内存块链表的头节点
-    size_t size_;       // 空闲内存块链表的大小
+    std::size_t size_;  // 空闲内存块链表的大小
 };
 
 }  // namespace raftx::memory

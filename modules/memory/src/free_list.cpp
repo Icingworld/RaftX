@@ -1,4 +1,4 @@
-import memory::free_list;
+module memory.free_list;
 
 import std;
 
@@ -101,12 +101,12 @@ FreeListIterator FreeList::end() noexcept
     return FreeListIterator(nullptr);
 }
 
-FreeListIterator FreeList::cbegin() const noexcept
+FreeList::const_iterator FreeList::cbegin() const noexcept
 {
     return FreeListIterator(head_);
 }
 
-FreeListIterator FreeList::cend() const noexcept
+FreeList::const_iterator FreeList::cend() const noexcept
 {
     return FreeListIterator(nullptr);
 }
@@ -116,7 +116,7 @@ bool FreeList::empty() const noexcept
     return head_ == nullptr;
 }
 
-size_t FreeList::size() const noexcept
+std::size_t FreeList::size() const noexcept
 {
     return size_;
 }

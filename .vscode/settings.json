@@ -1,0 +1,19 @@
+{
+  "cmake.useCMakePresets": "always",
+  "cmake.configurePreset": "ninja",
+  "cmake.buildPreset": "ninja",
+  "cmake.generator": "Ninja",
+  "cmake.preferredGenerators": ["Ninja"],
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.configureOnOpen": true,
+
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.autocomplete": "disabled",
+
+  "[cpp]": {
+    "editor.quickSuggestions": { "other": false, "comments": false, "strings": false }
+  },
+  "[c]": {
+    "editor.quickSuggestions": { "other": false, "comments": false, "strings": false }
+  }
+}
